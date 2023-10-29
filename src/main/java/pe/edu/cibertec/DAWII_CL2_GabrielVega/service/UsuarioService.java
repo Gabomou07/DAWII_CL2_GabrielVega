@@ -1,5 +1,6 @@
 package pe.edu.cibertec.DAWII_CL2_GabrielVega.service;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,6 +13,7 @@ import pe.edu.cibertec.DAWII_CL2_GabrielVega.repository.UsuarioRepository;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -41,26 +43,6 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    public boolean validarContrasena(String username, String contrasena) {
-        Usuario usuario = usuarioRepository.findUserByUserName(username);
 
-        if (usuario != null) {
-            // Comparar la contraseña ingresada con la contraseña almacenada
-            return bCryptPasswordEncoder.matches(contrasena, usuario.getPassword());
-        } else {
-            return false; // El usuario no existe
-        }
-    }
-    public void actualizarContrasena(String username, String nuevaContrasena) {
-        // Obtener el usuario de la base de datos
-        Usuario usuario = usuarioRepository.findUserByUserName(username);
-
-        // Hashear la nueva contraseña antes de guardarla en la base de datos
-        String nuevaContrasenaHasheada = passwordEncoder.encode(nuevaContrasena);
-
-        // Actualizar la contraseña del usuario
-        usuario.setPassword(nuevaContrasenaHasheada);
-        usuarioRepository.save(usuario);
-    }
 
 }

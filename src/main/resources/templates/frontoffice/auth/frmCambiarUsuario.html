@@ -12,43 +12,25 @@
             type="text/javascript"></script>
 </head>
 <body>
+<nav th:replace="~{layout::menu}"></nav>
 <div class="card">
     <div class="card-header text-bg-dark mb-3">
         Cambia tu Password
     </div>
     <div class="card-body">
-        <form th:action="@{/auth/guardarUsuario}" method="post">
+        <form th:action="@{/auth/cambiar}" method="post">
             <div class="mb-3">
-                <label for="nombres" class="form-label">Nombres</label>
-                <input maxlength="15" type="text" class="form-control"
-                       name="nombres" id="nombres">
-            </div>
-            <div class="mb-3">
-                <label for="apellidos" class="form-label">Apellidos</label>
-                <input maxlength="15" type="text" class="form-control"
-                       name="apellidos" id="apellidos">
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input maxlength="15" type="text" class="form-control"
-                       name="email" id="email">
-            </div>
-            <div class="mb-3">
-                <label for="nomusuario" class="form-label">Usuario</label>
-                <input maxlength="15" type="text" class="form-control"
-                       name="nomusuario" id="nomusuario">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
+
+                <label for="password" class="form-label">Nueva Password</label>
                 <input maxlength="15" type="password" class="form-control"
-                       name="password" id="password">
+                       name="password" id="password1">
+                    <label for="password" class="form-label">Repita NuevaPassword</label>
+                    <input maxlength="15" type="password" class="form-control"
+                           name="password" id="password">
+
             </div>
             <a class="btn btn-primary" th:href="@{/auth/login}"
-               role="button">Regresar al Login</a>
-            <button type="submit" id="btnregistrar" class="btn btn-primary">
-                <i class="fas fa-save"></i>
-                Guardar</button>
-
+               role="button">Guardar</a>
         </form>
     </div>
 </div>

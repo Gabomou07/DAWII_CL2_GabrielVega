@@ -20,8 +20,7 @@ import pe.edu.cibertec.DAWII_CL2_GabrielVega.service.UsuarioService;
 public class LoginController {
 
     private UsuarioService usuarioService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+
     @GetMapping("/login")
     public String login(){
         return "frontoffice/auth/frmLogin";
@@ -55,26 +54,6 @@ public class LoginController {
         return "frontoffice/auth/frmCambiarUsuario";
     }
 
-    @PostMapping("/cambiar-contrasena")
-    public String cambiarContrasena(@RequestParam String contrasenaActual, @RequestParam String nuevaContrasena, Principal principal) {
-        String username = contrasenaActual.ge(); // Obtiene el nombre de usuario del usuario autenticado
 
-        // Valida la contraseña actual
-        if (usuarioService.validarContrasena(username, contrasenaActual)) {
-            // Hashea y almacena la nueva contraseña
-
-            String nuevaContrasena
-            String nuevaContrasenaHasheada = passwordEncoder.encode(nuevaContrasena);
-            usuarioService.actualizarContrasena(username, nuevaContrasenaHasheada);
-
-
-            usuarioService.actualizarContrasena(username, nuevaContrasena
-// Redirige al usuario a una página de éxito
-            return "exito";
-        } else {
-            // La contraseña actual es incorrecta, redirige a una página de error
-            return "error";
-        }
-    }
 
 }
